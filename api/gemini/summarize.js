@@ -6,45 +6,30 @@ if (!geminiApiKey) {
   console.error("GEMINI_API_KEY environment variable is not set.");
 }
 
-// Initialize with explicit baseUrl - MIGHT HELP ACCESS THE MODEL
-const genAI = new GoogleGenerativeAI(geminiApiKey);
+// Initialize with explicit baseUrl - MIGHT BE NECESSARY FOR THIS MODEL/REGION
+const genAI = new GoogleGenerativeAI(geminiApiKey, {
+   baseUrl: 'https://generativelanguage.googleapis.com/v1' // Use v1 endpoint instead of v1beta (maybe?)
+});
 
-// Choose a model
-const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" }); // Using gemini-1.0-pro
+const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
-
+// ... (rest of the function code remains the same)
 export default async function handler(request, response) {
+  // ... (rest of the function code)
   const videoTitle = request.query.title;
   const videoDescription = request.query.description;
-
   if (!videoTitle && !videoDescription) {
     response.status(400).json({ error: 'Missing video title and description.' });
     return;
   }
-
-  const prompt = `
-  Provide a concise summary for a video based on its title and description.
-  Focus on the main topic and key points. Keep the summary under 3-4 sentences.
-  Avoid making definitive statements about the video's content unless explicitly stated in the description.
-  Respond only with the summary text.
-
-  Video Title: ${videoTitle || 'N/A'}
-  Video Description: ${videoDescription || 'N/BA'}
-  `;
-
+  const prompt = `...`; // Your prompt here
   try {
-    const result = await model.generateContent(prompt);
-    const apiResponse = result.response;
-    const summaryText = apiResponse.text();
-
-    response.status(200).json({ summary: summaryText });
-
+     const result = await model.generateContent(prompt);
+     const apiResponse = result.response;
+     const summaryText = apiResponse.text();
+     response.status(200).json({ summary: summaryText });
   } catch (error) {
     console.error('Error generating summary:', error.message);
-
-    response.status(500).json({
-      error: 'Failed to generate summary',
-      details: error.message
-    });
+    response.status(500).json({ error: 'Failed to generate summary', details: error.message });
   }
 }
