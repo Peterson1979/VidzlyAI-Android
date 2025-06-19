@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/**/*.js": {} // <-- Nincs runtime megadva itt
+    "api/**/*.js": {}
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
