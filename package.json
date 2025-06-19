@@ -1,10 +1,21 @@
 {
-  "name": "vidzly-api",
+  "name": "vidzlyai-backend-proxy",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend serverless functions for VidzlyAI mobile app",
+  "main": "api/test.js",
   "type": "module",
   "engines": {
     "node": "18.x"
   },
-  "dependencies": {}
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.10.0",
+    "googleapis": "^150.0.1"
+  }
 }
