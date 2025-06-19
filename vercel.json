@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/**/*.js": {}
+    "api/**/*.js": { "runtime": "nodejs@18.x" } 
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
