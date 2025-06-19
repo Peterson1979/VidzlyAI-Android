@@ -8,7 +8,7 @@ if (!geminiApiKey) {
 
 const genAI = new GoogleGenerativeAI(geminiApiKey);
 
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" }); // Model changed
 
 export default async function handler(request, response) {
   const videoTitle = request.query.title;
@@ -26,8 +26,8 @@ export default async function handler(request, response) {
   Respond only with the summary text.
 
   Video Title: ${videoTitle || 'N/A'}
-  Video Description: ${videoDescription || 'N/A'}
-  `;
+  Video Description: ${videoDescription || 'N/BA'}
+  `; // Changed N/A to N/BA in description to test if that triggers deployment
 
   try {
     const result = await model.generateContent(prompt);
