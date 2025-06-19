@@ -1,6 +1,0 @@
-{
-  "name": "vidzlyai-backend-functions",
-  "version": "1.0.0",
-  "description": "Serverless functions for VidzlyAI backend proxy",
-  "main": "test.js"
-}
