@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/**/*.js": { "runtime": "nodejs18.x" }
+    "api/**/*.js": { "runtime": "nodejs@18.x" } // <-- Javított sor
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
