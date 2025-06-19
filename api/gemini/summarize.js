@@ -6,9 +6,12 @@ if (!geminiApiKey) {
   console.error("GEMINI_API_KEY environment variable is not set.");
 }
 
+// Initialize with explicit baseUrl - MIGHT HELP ACCESS THE MODEL
 const genAI = new GoogleGenerativeAI(geminiApiKey);
 
-const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" }); // Model changed
+// Choose a model
+const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" }); // Using gemini-1.0-pro
+
 
 export default async function handler(request, response) {
   const videoTitle = request.query.title;
@@ -27,7 +30,7 @@ export default async function handler(request, response) {
 
   Video Title: ${videoTitle || 'N/A'}
   Video Description: ${videoDescription || 'N/BA'}
-  `; // Changed N/A to N/BA in description to test if that triggers deployment
+  `;
 
   try {
     const result = await model.generateContent(prompt);
